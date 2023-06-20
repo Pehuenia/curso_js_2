@@ -7,11 +7,23 @@
   <body>
     
     <script>
+      /*
       function function1() {
         console.log('Hello');
         console.log(2 + 2);
       }
       function1();
+      */
+//En la función calculateTax, el argumento taxPercent tiene asignado un valor por defecto = 0.1. Se usa en caso de que al invocar a la función, no se envíe por parámetro el valor para dicho argumento.
+      function calculateTax(cost, taxPercent = 0.1) {
+        console.log(`Esto da: $${cost * taxPercent}`);
+      }
+
+      let miImpuesto1 = calculateTax(2000, 0.2);
+
+      let miImpuesto2 = calculateTax(5000);
+
+
 
     </script>
   </body>
