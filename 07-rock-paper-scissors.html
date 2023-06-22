@@ -19,7 +19,7 @@
     <button onclick="
     playGame('scissors');
     ">Scissors</button>
-   
+  
 
     <script>
 
@@ -33,7 +33,7 @@
         if(randomNumber >= 0 && randomNumber <1/3) {
           computerMove = 'rock';
         } else if (randomNumber >= 1/3 && randomNumber < 2/3) {
-         computerMove ='paper'; 
+          computerMove ='paper'; 
         } else if (randomNumber >= 2/3 && randomNumber < 1) {
           computerMove ='scissors';
         }
@@ -46,23 +46,52 @@
 
         if (playerMove === computerMove) {
           result = 'It is a tie.';
-        } else if (playerMove === 'rock' && computerMove === 'paper') {
-          result = 'You lose';
-        } else if (playerMove === 'rock' && computerMove === 'scissors') {
-          result = 'You win';
-        } else if (playerMove === 'paper' && computerMove === 'rock') {
-          result = 'You win';
-        } else if (playerMove === 'paper' && playerMove === 'scissors') {
-          result = 'You lose';
-        } else if (playerMove === 'scissors' && playerMove === 'paper') {
-          result = 'You lose';
-        } else if (playerMove  === 'scissors' && playerMove === 'rock') {
-          result = 'You win';
+        } else if (playerMove === 'rock') {
+          result = playRock(computerMove);
+        } else if (playerMove === 'paper') {
+          result = playPaper(computerMove);
+        } else if (playerMove === 'scissors') {
+          result = playScissors(computerMove);
         }
 
-        alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}`);
-     
+        alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}.`);
+    
       }
+
+      const winMsg = 'You win';
+      const loseMsg = 'You lose';
+
+      function playRock (computerMove) {
+        msg = '';
+        if (computerMove === 'paper') {
+          msg = loseMsg;
+        } else if (computerMove === 'scissors') {
+          msg = winMsg;
+        }
+        return msg;
+      }
+
+      function playScissors (computerMove) {
+        msg = '';
+        if (computerMove === 'paper') {
+          msg = winMsg;
+        } else if (computerMove === 'rock') {
+          msg = loseMsg;
+        }
+        return msg;
+      }
+
+
+      function playPaper (computerMove) {
+        msg = '';
+        if(computerMove === 'rock') {
+          msg = winMsg;
+        } else if (computerMove === 'scissors') {
+          msg = loseMsg;
+        }
+        return msg;
+      }
+
     </script>
   </body>
 </html>
