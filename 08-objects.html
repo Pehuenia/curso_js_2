@@ -29,11 +29,36 @@
     */
 
     const product2 = {
-      name: 'shirt'
+      name: 'shirt', 'delivery-time': '1 day',
+      rating: {
+        stars: 4.5,
+        count:87
+      },
+      fun: function function1() {
+        console.log('function inside objetct');
+      }
     };
+
+
     console.log(product2);
     console.log(product2.name); //DOT NOTATION
-    confirm.log(product2['name']); //BRACKET NOTATION
+    console.log(product2['name']); //BRACKET NOTATION
+    console.log(product2['delivery-time']);
+    
+    console.log(product2.rating.count);
+
+    //fun ES UNA función, y es una PROPIEDAD DE RATING; rating  es un objeto y es una propiedad del objeto product2. A la función fun la podemos invocar:
+    product2.fun();
+
+    console.log(typeof console.log);
+
+    //CONVERTIR DE JS A JSON
+    console.log(JSON.stringify(product2));
+
+    const jsonString = JSON.stringify(product2);
+    //CONVERTIR DE JSON A JS
+    console.log(JSON.parse(jsonString));
+
     </script>
   </body>
 </html>
