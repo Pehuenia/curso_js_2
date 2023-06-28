@@ -13,11 +13,11 @@
       ">Rock</button>
 
     <button onclick="
-    playGame('paper');
+      playGame('paper');
     ">Paper</button> 
 
     <button onclick="
-    playGame('scissors');
+      playGame('scissors');
     ">Scissors</button>
 
     <button onclick="
@@ -31,10 +31,18 @@
       const loseMsg = 'You lose';
       const tieMsg = 'It is a tie';
 
-      /*Obtenemos de localStorage el objeto score que almacenamos. Para eso lo convertimos a objeto js nuevamente. 
+      /*Obtenemos de localStorage el objeto  score que almacenamos. Para eso lo convertimos a objeto js nuevamente. 
       NO ME QUEDA CLARO CÓMO ADIVINA EL PROGRAMA CUÁL ES LA CONFORMACIÓN DE SCORE.
       */
-      const score = JSON.parse(localStorage.getItem('score'));
+      let score = JSON.parse(localStorage.getItem('score'));
+
+      if (score === null) {
+        score = {
+          wins: 0,
+          losses: 0,
+          ties: 0
+        }
+      }
 
       //Atención: en el video, el profe las declara como constantes en cada atributo onclick, pero eso da on error que quiero evitar. Por ahora, prefiero declararlas acá, hasta ver bien cómo es.
 
@@ -61,7 +69,7 @@
         } else if (playerMove === 'rock') {
           result = playRock(computerMove);
         } else if (playerMove === 'paper') {
-          result = playPaper(computerMove);
+          result = playPaper(computerMove); 
         } else if (playerMove === 'scissors') {
           result = playScissors(computerMove);
         }
@@ -87,7 +95,7 @@
           msg = winMsg;
         }
         return msg;
-      }s
+      }
 
       function playScissors (computerMove) {
         msg = '';
@@ -121,9 +129,13 @@
 
 
       function resetScore() {
-        score.wins = 0;
+        score.wins = 0
         score.losses = 0;
         score.ties = 0;
+        localStorage.removeItem('score'); 
+
+        console.log(`wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties}`);
+        
       }
 
 
