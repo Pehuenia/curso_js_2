@@ -32,17 +32,26 @@
       const tieMsg = 'It is a tie';
 
       /*Obtenemos de localStorage el objeto  score que almacenamos. Para eso lo convertimos a objeto js nuevamente. 
-      NO ME QUEDA CLARO CÓMO ADIVINA EL PROGRAMA CUÁL ES LA CONFORMACIÓN DE SCORE.
+     
       */
-      let score = JSON.parse(localStorage.getItem('score'));
-
-      if (score === null) {
-        score = {
+     // A continuación hay un shortcut el condicional. 
+      let score = JSON.parse(localStorage.getItem('score')) || { 
+        wins: 0,
+        losses: 0,
+        ties: 0
+          
+        };
+//!score es lo mismo que score === null
+/*       
+if (!score) {
+        score = { 
           wins: 0,
           losses: 0,
           ties: 0
-        }
-      }
+          
+        };
+        */
+      
 
       //Atención: en el video, el profe las declara como constantes en cada atributo onclick, pero eso da on error que quiero evitar. Por ahora, prefiero declararlas acá, hasta ver bien cómo es.
 

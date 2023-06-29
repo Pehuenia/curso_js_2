@@ -26,7 +26,7 @@
 
       delete product.newProperty;
       console.log(product);
-    */
+    
 
     const product2 = {
       name: 'shirt', 'delivery-time': '1 day',
@@ -58,6 +58,66 @@
     const jsonString = JSON.stringify(product2);
     //CONVERTIR DE JSON A JS
     console.log(JSON.parse(jsonString));
+ */
+
+    console.log('Hello'.length);
+    console.log('Hello'.toUpperCase());
+
+    const object1 = {
+    message: 'Hello'
+ };
+
+ const object2 = object1;
+
+ //OJO: COMO LOS DOS OBJETOS TIENEN LA MISMA REFERENCIA EN MEMORIA, SI CAMBIO ALGO DE UNO, TAMBIÉN EL OTRO CAMBIA. 
+    object1.message = 'Good job';
+    console.log(object1.message);
+    console.log(object1.message);
+
+    const object3 = {
+    message: 'Good job'
+ };
+    console.log(object3 === object1);
+    console.log(object1 === object2);
+
+    const object4 = {
+    message: 'Good job!',
+    price: 799
+ };
+  //const message = object4.message;
+  //ATAJO PARA OBTENER PROPIEDADES:
+  /*
+    También se pueden obtener varias propiedades de un objeto a través del mismo atajo.
+    En el siguiente ejemplo obtenemos message y Price y los almacenamos en dos variables homónimas diferentes. Luego, las podemos usar por separado de la forma habitual:
+
+    */
+    const { message, price } = object4;
+    console.log(message);
+    console.log(price);
+//THE SHORTHAND PROPERTY:
+    const object5 = {
+      //message: message
+      //El siguiente código hace lo mismo que la línea de código anterior donde message llama a message:
+      message,
+    /*  method: function function1() {
+        console.log('method');
+      }
+      method() {
+        console.log('method');
+      }
+      */
+    };
+
+    console.log(object5);
+
+    object5.method();
+
+    //THE SHORTHAND METOD:
+
+    
+
+
+  
 
     </script>
   </body>
