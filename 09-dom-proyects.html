@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>DOM PROYECTS</title>
+  </head>
+
+  <body>
+    <p> YouTube Subscribe Button</p>
+    <button onclick="changeSuscriptionStatus()" class="js-subscription-button">Subscribe</button> 
+
+    <p>Rock Paper Scissors</p>
+
+    <button>Click here</button>
+
+    <p>Amazon Shipping Calculator</p>
+
+    <p>Orders under $40 = + $10 shipping.</p>
+    <p>Orders over $40 = FREE shipping.</p>
+
+    <button>Calculate</button>
+
+    <script>
+      const subscribeText = 'Subscribe';
+      const subscribedText = 'Subscribed';
+
+
+      function changeSuscriptionStatus() {
+        const botton1 = document.querySelector('.js-subscription-button');
+
+        if(botton1.innerHTML === subscribeText) {
+          botton1.innerHTML= subscribedText;
+        } else {
+          botton1.innerHTML = subscribeText;
+        }
+      }
+
+    </script>
+  </body>
+</html>

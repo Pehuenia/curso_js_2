@@ -6,7 +6,28 @@
   </head>
 
   <body>
+    <button>Hello</button>
+    
+    <button class="js-button">Second button</button> 
+
     <script>
+      /*NOS TRAE EL PRIMER BOTÓN. CON UN ATRIBUTO DE CLASE ACCEDEMOS A BOTONES DIFERENTES AL PRIMERO SE ACOSTUMBRA EMPESAR EL NOMBRE DE ESOS ATRIBUTOS DE CLASE CON js para que quede claro que esos atributos de van a usar en  JS, por ejemplo: "js-button"
+
+      Ese botón, ahora, dentro del código JS, se convierte en un objeto js, y podemos usarlo como tal:
+      */
+      console.log(document.querySelector('button').innerHTML);
+//SHORT CUT 👇
+      document.querySelector('button') 
+        .innerHTML = 'Changed'; /* 👈 A través de la propiedad innerHTML que este botón tiene por ser un elemento html, podemos controlar el contenido HTML que hay dentro de ese botón.
+*/
+//CON UN ATRIBUTO DE CLASE ACCEDEMOS A BOTONES DIFERENTES AL PRIMERO:
+      const buttonElement =  document.querySelector('.js-button');
+
+      console.log(buttonElement);
+
+  
+
+      /*
       console.log(document.title);
       document.title = 'Changed';
 
@@ -15,9 +36,12 @@
 
       console.log.apply(document.body.innerHTML);
 
+      //COMO la propiedad innerHTML DE <body> CONTIENE TODO LO EL CÓDIGO HTML QUE ESTÁ DENTRO DEL BODY, SI MODIFICO ESTA PROPIEDAD, CAMBIA EL CONTENIDO DE <body>:
       document.body.innerHTML = 'Buenas noches';
+      //Incluso puedo insertar código html, no solo texto; en el siguiente caso, se crea el botón desde dentro del <script>, en lugar de hacerlo desde afuera, como veníamos haciendo. De esta manera queda reemplazado todo el contenido previo del <body>.
+      document.body.innerHTML = '<button>Good job!</button>';
 
-      /*
+    
       document.body.innerHTML = 'hello';
       document.title = 'Good job!';
       */
