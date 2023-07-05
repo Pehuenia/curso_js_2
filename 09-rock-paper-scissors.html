@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Rock Paper Scissors</title>
+  </head>
+
+  <body>
+    <p>Rock Paper Scissors</p>
+
+    <button onclick="
+      playGame('rock');
+      ">Rock</button>
+
+    <button onclick="
+      playGame('paper');
+    ">Paper</button> 
+
+    <button onclick="
+      playGame('scissors');
+    ">Scissors</button>
+
+    <p class="js-score"></p>
+
+    <button onclick="
+      resetScore();
+    ">Reset Score</button>
+  
+
+    <script>
+
+      const winMsg = 'You win';
+      const loseMsg = 'You lose';
+      const tieMsg = 'It is a tie';
+
+      /*Obtenemos de localStorage el objeto  score que almacenamos. Para eso lo convertimos a objeto js nuevamente. 
+     
+      */
+     // A continuación hay un shortcut el condicional. 
+      let score = JSON.parse(localStorage.getItem('score')) || { 
+        wins: 0,
+        losses: 0,
+        ties: 0
+          
+        };
+
+        updateScoreElement();
+
+        
+//!score es lo mismo que score === null
+/*       
+if (!score) {
+        score = { 
+          wins: 0,
+          losses: 0,
+          ties: 0
+          
+        };
+        */
+      
+
+      //Atención: en el video, el profe las declara como constantes en cada atributo onclick, pero eso da on error que quiero evitar. Por ahora, prefiero declararlas acá, hasta ver bien cómo es.
+
+      function pickComputerMove() {
+        let randomNumber = Math.random();
+        let computerMove = '';
+
+        if(randomNumber >= 0 && randomNumber <1/3) {
+          computerMove = 'rock';
+        } else if (randomNumber >= 1/3 && randomNumber < 2/3) {
+          computerMove ='paper'; 
+        } else if (randomNumber >= 2/3 && randomNumber < 1) {
+          computerMove ='scissors';
+        }
+        return computerMove; 
+      }
+
+      function playGame (playerMove) {
+        let result = '';
+        computerMove = pickComputerMove();
+
+        if (playerMove === computerMove) {
+          result = tieMsg;
+        } else if (playerMove === 'rock') {
+          result = playRock(computerMove);
+        } else if (playerMove === 'paper') {
+          result = playPaper(computerMove); 
+        } else if (playerMove === 'scissors') {
+          result = playScissors(computerMove);
+        }
+
+        updateScore(result);
+      /*CONVERSIÓN A STRING DEL OBJETO score (tabla de puntaje) 
+      Luego de actualizar la tabla de puntajes (score) con updateScore, a continuación almacenamos score en localStorage. Como localStorage solo SOLO SOPORTA STRINGS, invocamos a la función stringity del objeto JSON, para que convierta al objeto score de JS en un string:
+      */
+
+        localStorage.setItem('score', JSON.stringify(score));
+
+       updateScoreElement();
+
+        alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}.
+        Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+      }
+
+  
+      
+      function playRock (computerMove) {
+        msg = '';
+        if (computerMove === 'paper') {
+          msg = loseMsg;
+        } else if (computerMove === 'scissors') {
+          msg = winMsg;
+        }
+        return msg;
+      }
+
+      function playScissors (computerMove) {
+        msg = '';
+        if (computerMove === 'paper') {
+          msg = winMsg;
+        } else if (computerMove === 'rock') {
+          msg = loseMsg;
+        }
+        return msg;
+      }
+
+      function playPaper (computerMove) {
+        msg = '';
+        if(computerMove === 'rock') {
+          msg = winMsg;
+        } else if (computerMove === 'scissors') {
+          msg = loseMsg;
+        }
+        return msg;
+      }
+
+      function updateScore(resultMsg) {
+        if (resultMsg === winMsg) {
+          score.wins++;
+        } else if (resultMsg === loseMsg) {
+          score.losses++;
+        } else if (resultMsg === tieMsg) {
+          score.ties++;
+        }
+      }
+
+      function updateScoreElement() {
+        const resume = document.querySelector('.js-score');
+        resume.innerHTML = ` Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+      }
+
+
+      function resetScore() {
+        score.wins = 0
+        score.losses = 0;
+        score.ties = 0;
+        localStorage.removeItem('score'); 
+
+        updateScoreElement();
+
+     
+        alert(`wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties}`);
+        
+      }
+
+     
+      
+
+
+    </script>
+  </body>
+</html>
