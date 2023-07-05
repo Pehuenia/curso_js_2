@@ -20,6 +20,10 @@
       playGame('scissors');
     ">Scissors</button>
 
+    <p class="js-result"></p>
+
+    <p class="js-movements"></p>
+
     <p class="js-score"></p>
 
     <button onclick="
@@ -34,7 +38,7 @@
       const tieMsg = 'It is a tie';
 
       /*Obtenemos de localStorage el objeto  score que almacenamos. Para eso lo convertimos a objeto js nuevamente. 
-     
+    
       */
      // A continuación hay un shortcut el condicional. 
       let score = JSON.parse(localStorage.getItem('score')) || { 
@@ -96,14 +100,15 @@ if (!score) {
 
         localStorage.setItem('score', JSON.stringify(score));
 
-       updateScoreElement();
+        document.querySelector('.js-result').innerHTML = result;
 
-        alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}.
-        Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+        document.querySelector('.js-movements').innerHTML = 
+        `You ${playerMove} - ${computerMove} Computer`;
+
+        updateScoreElement();
+
       }
 
-  
-      
       function playRock (computerMove) {
         msg = '';
         if (computerMove === 'paper') {
@@ -149,7 +154,6 @@ if (!score) {
         resume.innerHTML = ` Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
       }
 
-
       function resetScore() {
         score.wins = 0
         score.losses = 0;
@@ -158,13 +162,10 @@ if (!score) {
 
         updateScoreElement();
 
-     
-        alert(`wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties}`);
+    
+        //alert(`wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties}`);
         
       }
-
-     
-      
 
 
     </script>

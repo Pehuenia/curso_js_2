@@ -18,14 +18,31 @@
 
     <p>Amazon Shipping Calculator</p>
 
-    <p>Orders under $40 = + $10 shipping.</p>
-    <p>Orders over $40 = FREE shipping.</p>
+    <p class="js-shipping-cost-msg"></p>
+    <p class="js-free-shipping-msg"></p>
 
-    <button>Calculate</button>
+    <p>
+      <input placeholder="Cost of order">
+      <button onclick="calculateTotal()">Calculate</button>
+    </p>
 
     <script>
+      const shippingCost = 10;
+      const minFreeShipping = 40;
+
       const subscribeText = 'Subscribe';
       const subscribedText = 'Subscribed';
+
+      function calculateTotal(amount) {
+        return amount < minFreeShipping ? amount + shippingCost: amount;
+      }
+
+
+      document.querySelector('.js-shipping-cost-msg').innerHTML = 
+      `Orders under ${minFreeShipping} = + ${shippingCost} shipping.`;
+      
+      document.querySelector('.js-free-shipping-msg').innerHTML = 
+      `Orders over ${minFreeShipping} = FREE shipping.`;
 
 //innerText se usa para la comparación pirque ignora los espacios. 
       function changeSuscriptionStatus() {
@@ -37,6 +54,8 @@
           suscriptionButton.innerHTML = subscribeText;
         }
       }
+
+      
   
     </script>
   </body>
