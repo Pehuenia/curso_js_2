@@ -33,7 +33,7 @@
       const loseMsg = 'You lose';
       const tieMsg = 'It is a tie';
 
-      /*Obtenemos de localStorage el objeto  score que almacenamos. Para eso lo convertimos a objeto js nuevamente. 
+      /*Obtenemos de localStorage el objeto  score que almacenamos. Para eso, se envía por parámetro el string 'score', que es la clave del elemento almacenado en localStorage. Para eso lo convertimos a objeto js nuevamente. 
      
       */
      // A continuación hay un shortcut el condicional. 
@@ -41,7 +41,7 @@
         wins: 0,
         losses: 0,
         ties: 0
-          
+        //¿Acá,si local storage es === null lo crea?
         };
 
         updateScoreElement();
@@ -54,7 +54,6 @@ if (!score) {
           wins: 0,
           losses: 0,
           ties: 0
-          
         };
         */
       
@@ -96,7 +95,7 @@ if (!score) {
 
         localStorage.setItem('score', JSON.stringify(score));
 
-       updateScoreElement();
+        updateScoreElement();
 
         alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}.
         Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
@@ -151,6 +150,9 @@ if (!score) {
 
 
       function resetScore() {
+
+        //Se igualan a cero las propiedades de score, porque, si bien luego se remueve el item score del localStorage, no se remueve la variable del proyecto. 
+        //Se remueve el item score de localStorage, en lugar de resetear sus valores a 0 únicamente, porque se correría el riesgo de perder consistencia (ver en chat gpt: localStorage, resetear).
         score.wins = 0
         score.losses = 0;
         score.ties = 0;
@@ -164,9 +166,6 @@ if (!score) {
       }
 
      
-      
-
-
     </script>
   </body>
 </html>
