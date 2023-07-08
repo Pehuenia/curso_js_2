@@ -22,7 +22,10 @@
     <p class="js-free-shipping-msg"></p>
 
     <p>
-      <input placeholder="Cost of order" class="js-cost-input">
+      <input placeholder="Cost of order" 
+      class="js-cost-input" onkeydown="
+      console.log('typing');
+      ">  <!--El elemento <input> genera un cuadro de texto. Usamos la clase placeholder, para mostrar el texto que por defecto se verá en el cuadro, antes de que el usuario escriba algo. .-->
       <button onclick="calculateTotal()">Calculate</button>
     </p>
     <p class="js-total-cost"></p>
@@ -39,14 +42,17 @@
 
       function calculateTotal() {
         const inputElement = document.querySelector('.js-cost-input');
-        const cost = inputElement.value;
+       
+        let cost = Number(inputElement.value); // Necesitamos el valor que está dentro del cuadro de texto. En este caso no se hace con inner.HTML, sino con otra propiedad: .value, porque no hay html dentro de los input elements. ACLARAR BIEN ESTO. Calculo que es porque el usuario ingresa un string. POR OTRA PARTE, USAMOS la función propia de JS, Number(), para convertir en un número al string ingresado en el cuadro de texto.
     
-        if(cost < minFreeShipping) {
+        if (cost < minFreeShipping) {
           cost += shippingCost;
         }
-        //COMPLETAR
-      }
 
+        document.querySelector('.js-total-cost').innerHTML = `Total cost $${cost}`;
+
+      }
+     
 
       document.querySelector('.js-shipping-cost-msg').innerHTML = 
       `Orders under ${minFreeShipping} = + ${shippingCost} shipping.`;
