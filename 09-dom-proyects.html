@@ -23,16 +23,25 @@
 
     <p>
       <input placeholder="Cost of order" 
-      class="js-cost-input" onkeydown="
-      console.log('typing');
+      class="js-cost-input" onkeydown="  //   👈 Ejecuta código jd al apretar la tecla enter. 
+        handleCostKeydown(event); //    ¿DE DÓNDE SALI+O EVER. ""
+     
       ">  <!--El elemento <input> genera un cuadro de texto. Usamos la clase placeholder, para mostrar el texto que por defecto se verá en el cuadro, antes de que el usuario escriba algo. .-->
-      <button onclick="calculateTotal()">Calculate</button>
-    </p>
-    <p class="js-total-cost"></p>
+      <button onclick="
+      calculateTotal()
+      ">Calculate</button>
+      </p>
+      <p class="js-total-cost"></p>
 
   
 
     <script>
+      function handleCostKeydown(event) {
+        if(event.key ==='Enter') {
+        calculateTotal();
+      }
+      }
+
       const shippingCost = 10;
       const minFreeShipping = 40;
 
