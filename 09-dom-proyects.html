@@ -20,13 +20,15 @@
 
     <p class="js-shipping-cost-msg"></p>
     <p class="js-free-shipping-msg"></p>
-
+    <!--👇 onkeydown= Ejecuta el código JS indicado, cada vez que se presiona una tecla cualquiera. 
+    También podemos especificar si queremos que una tecla en particular realice una determinada acción; -->   
     <p>
       <input placeholder="Cost of order" 
-      class="js-cost-input" onkeydown="  //   👈 Ejecuta código jd al apretar la tecla enter. 
-        handleCostKeydown(event); //    ¿DE DÓNDE SALI+O EVER. ""
-     
-      ">  <!--El elemento <input> genera un cuadro de texto. Usamos la clase placeholder, para mostrar el texto que por defecto se verá en el cuadro, antes de que el usuario escriba algo. .-->
+      class="js-cost-input" onkeydown="
+       // console.log('Tipeando');
+       handleCostKeydown(event); //👈 event es un objeto provisto por Java 
+      ">  
+      <!--El elemento <input> genera un cuadro de texto. Usamos la clase placeholder, para mostrar el texto que por defecto se verá en el cuadro, antes de que el usuario escriba algo. .-->
       <button onclick="
       calculateTotal()
       ">Calculate</button>
@@ -58,7 +60,7 @@
 
       function calculateTotal() {
         const inputElement = document.querySelector('.js-cost-input');
-       
+      
         let cost = Number (inputElement.value); // Necesitamos el valor que está dentro del cuadro de texto. En este caso no se hace con inner.HTML, sino con otra propiedad: .value, porque no hay html dentro de los input elements. ACLARAR BIEN ESTO. Calculo que es porque el usuario ingresa un string. POR OTRA PARTE, USAMOS la función propia de JS, Number(), para convertir en un número al string ingresado en el cuadro de texto.
         
         if (cost < minFreeShipping) {
@@ -68,7 +70,7 @@
         document.querySelector('.js-total-cost').innerHTML = `Total cost $${cost}`;
 
       }
-     
+    
 
       document.querySelector('.js-shipping-cost-msg').innerHTML = 
       `Orders under ${minFreeShipping} = + ${shippingCost} shipping.`;
