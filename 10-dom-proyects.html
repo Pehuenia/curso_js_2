@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>DOM PROYECTS</title>
+  <style>
+    .subscribe-button {
+      border: none;
+      color: white;
+      background-color: black;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 15px;
+      padding-right: 15px;
+      font-weight: bold;
+      border-radius: 20px ;
+      cursor: pointer; 
+    }
+    
+  </style>
+  </head>
+
+  <body>
+    <p> YouTube Subscribe Button</p>
+    <button onclick="
+    changeSuscriptionStatus();
+    " class="js-subscription-button subscribe-button">
+    Subscribe
+    </button> 
+
+    <p>Rock Paper Scissors</p>
+
+    <button>Click here</button>
+
+    <p>Amazon Shipping Calculator</p>
+
+    <p class="js-shipping-cost-msg"></p>
+    <p class="js-free-shipping-msg"></p>
+    <!--👇 onkeydown= Ejecuta el código JS indicado, cada vez que se presiona una tecla cualquiera. 
+    También podemos especificar si queremos que una tecla en particular realice una determinada acción; -->   
+    <p>
+      <input placeholder="Cost of order" 
+      class="js-cost-input" onkeydown="
+       // console.log('Tipeando');
+       handleCostKeydown(event); //👈 event es un objeto provisto por Java 
+      ">  
+      <!--El elemento <input> genera un cuadro de texto. Usamos la clase placeholder, para mostrar el texto que por defecto se verá en el cuadro, antes de que el usuario escriba algo. .-->
+      <button onclick="
+      calculateTotal()
+      ">Calculate</button>
+      </p>
+      <p class="js-total-cost"></p>
+
+  
+
+    <script>
+      String(25);//CONVERTIR A STRING
+      console.log('25' - 5);
+
+      window.document
+      window.console.log('window');
+
+        //RECORDAR QUE event ES UN OBJETO PROVISTO POR JS.
+      function handleCostKeydown(event) {
+        if(event.key ==='Enter') {
+        calculateTotal();
+        }
+      }
+    
+      const shippingCost = 10;
+      const minFreeShipping = 40;
+
+      const subscribeText = 'Subscribe';
+      const subscribedText = 'Subscribed';
+
+
+      function calculateTotal() {
+        const inputElement = document.querySelector('.js-cost-input');
+      
+        let cost = Number (inputElement.value); // Necesitamos el valor que está dentro del cuadro de texto. En este caso no se hace con inner.HTML, sino con otra propiedad: .value, porque no hay html dentro de los input elements. ACLARAR BIEN ESTO. Calculo que es porque el usuario ingresa un string. POR OTRA PARTE, USAMOS la función propia de JS, Number(), para convertir en un número al string ingresado en el cuadro de texto.
+        
+        if (cost < minFreeShipping) {
+          cost += shippingCost;
+        }
+
+        document.querySelector('.js-total-cost').innerHTML = `Total cost $${cost}`;
+      }
+    
+
+      document.querySelector('.js-shipping-cost-msg').innerHTML = 
+      `Orders under ${minFreeShipping} = + ${shippingCost} shipping.`;
+      
+      document.querySelector('.js-free-shipping-msg').innerHTML = 
+      `Orders over ${minFreeShipping} = FREE shipping.`;
+
+//innerText se usa para la comparación pirque ignora los espacios. 
+      function changeSuscriptionStatus() {
+        const suscriptionButton = document.querySelector('.js-subscription-button');
+
+        if(suscriptionButton.innerText === subscribeText) {
+          suscriptionButton.innerHTML= subscribedText;
+        } else {
+          suscriptionButton.innerHTML = subscribeText;
+        }
+      }
+
+   
+    </script>
+  </body>
+</html>
